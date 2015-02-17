@@ -7,5 +7,5 @@
 - else
   %h1 No restaurants yet!
 
-%a(href='/restaurants/new') Add a restaurant
-/ - link_to("Add a restaurant", '/restaurants/new', html_options={})
+/ %a(href='/restaurants/new') Add a restaurant
+= link_to "Add a restaurant", new_restaurant_path
