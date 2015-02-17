@@ -14,6 +14,7 @@ class ReviewsController < ApplicationController
     # @review= Review.create(review_params)
     # redirect_to '/restaurants's
     @restaurant.reviews.create(review_params)
+    redirect_to restaurants_path
   end
   
 end
