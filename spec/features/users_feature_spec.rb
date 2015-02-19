@@ -33,4 +33,21 @@ context "user signed in on the homepage" do
     expect(page).not_to have_link('Sign in')
     expect(page).not_to have_link('Sign up')
   end
+
+  it "user cannot destroy other's restaurant" do
+    visit('/')
+    click_link 'Add a restaurant'
+    fill_in 'Name', with: 'Burger'
+    click_button 'Create Restaurant'
+    click_link('Sign out')
+
+    click_link('Sign up')
+    fill_in('Email', with: 'test2@example.com')
+    fill_in('Password', with: 'testtest')
+    fill_in('Password confirmation', with: 'testtest')
+    click_button('Sign up')
+
+    expect(page).not_to have_link('Delete Burger')
+  end
+
 end

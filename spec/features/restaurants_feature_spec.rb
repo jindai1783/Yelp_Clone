@@ -68,7 +68,7 @@ feature 'restaurants' do
   end
 
   context 'deleting restaurtants' do
-    before {Restaurant.create name: 'KFC'}
+    before {Restaurant.create name: 'KFC', user_id: User.last.id}
 
     scenario 'removes a restaurant when a user clicks a delete link' do
       visit '/restaurants'
