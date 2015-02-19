@@ -14,5 +14,8 @@ describe ReviewsHelper, :type => :helper do
       expect(helper.star_rating(3)).to eq '★★★☆☆'
     end
 
+    it 'returns 4 black and 1 white star' do 
+      expect(helper.star_rating(3.5)).to eq '★★★★☆'
+    end
   end
 end
