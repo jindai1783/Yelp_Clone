@@ -20,6 +20,8 @@
           - restaurant.reviews.each do |review|
             %li
               = review.thoughts
+              = link_to "Endorse Review", new_review_endorsement_path(review)
+              %p= pluralize review.endorsements.count, 'endorsements'
               %strong= review.rating
               /5
               - if current_user == review.user

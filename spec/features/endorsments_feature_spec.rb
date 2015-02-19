@@ -9,7 +9,7 @@ feature 'endorsing reviews' do
 
   scenario 'a user can endorse a review,which updates the review ednorsment count' do 
     visit '/restaurants'
-    click_link 'Endorse KFC'
+    click_link 'Endorse Review'
     expect(page).to have_content('1 endorsement')
   end
 
