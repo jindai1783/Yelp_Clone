@@ -83,7 +83,7 @@ feature 'reviewing' do
       click_link 'Sign out'
       sign_in('Pot')
       leave_review("Great", '5')
-      expect(page).to have_content('Average rating: ★★★★☆')
+      expect(page).to have_content('Average rating: 4 ★★★★☆')
     end
   end
 end
