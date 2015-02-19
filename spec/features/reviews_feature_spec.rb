@@ -74,4 +74,35 @@ feature 'reviewing' do
     end
 
   end
+
+
+
+  context "Make review looks better" do
+    scenario "displays an average rating for all reviews" do
+      sign_in('Hoe')
+      leave_review("So so", '3')
+
+      click_link 'Sign out'
+      sign_in('Pot')
+      leave_review("Great", '5')
+      expect(page).to have_content('Average rating: 4')
+    end
+  end
+end
+
+def sign_in(name)
+  visit '/'
+  click_link('Sign up')
+  fill_in('Email', with: name + '@example.com')
+  fill_in('Password', with: 'testtest')
+  fill_in('Password confirmation', with: 'testtest')
+  click_button('Sign up')
+end
+
+def leave_review(thougths, rating)
+  visit '/restaurants'
+  click_link 'Review KFC'
+  fill_in 'Thoughts', with: thougths
+  select rating, from: 'Rating'
+  click_button 'Leave Review'
 end
