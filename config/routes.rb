@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   #   get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   # end
 
-  resources :restaurants do 
-    resources :reviews
+  resources :restaurants, shallow: true do 
+    resources :reviews do
+      resources :endorsements
+    end
   end
 
 
