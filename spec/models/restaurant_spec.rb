@@ -31,4 +31,13 @@ describe '#average_rating' do
     end
   end
 
+  context 'multiple reviews' do
+    it 'returns the average' do
+      restaurant = Restaurant.create(name: "Kapusniak")
+      restaurant.reviews.create(rating: 4)
+      restaurant.reviews.create(rating: 2)
+      expect(restaurant.average_rating).to eq(3)
+    end
+  end
+
 end

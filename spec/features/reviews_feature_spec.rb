@@ -75,8 +75,6 @@ feature 'reviewing' do
 
   end
 
-
-
   context "Make review looks better" do
     scenario "displays an average rating for all reviews" do
       sign_in('Hoe')
