@@ -12,11 +12,22 @@ class ReviewsController < ApplicationController
   def create 
     @restaurant = Restaurant.find(params[:restaurant_id])
 
-    object = review_params
-    object["user_id"]=current_user.id.to_s
-    @restaurant.reviews.create(object)
+    if current_user.has_reviewed? @restaurant
+      # do some error message
+      flash[:notice] = 'You already reviewed this one'
+    else
+      @review = @restaurant.reviews.build(review_params)
+      @review.user = current_user
+      @review.save
+    end
 
     redirect_to restaurants_path
   end
   
+  
+  private
+
+  def review_params
+    params.require(:review).permit(:thoughts, :rating)
+  end
 end

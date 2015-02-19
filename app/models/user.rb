@@ -8,11 +8,11 @@ class User < ActiveRecord::Base
 
   has_many :reviews
   has_many :restaurants
-  # has_many :reviewed_restaurants, through: :reviews, class_name: 'Restaurant'
+  has_many :reviewed_restaurants, through: :reviews, source: :restaurant
 
-  def has_reviewed(restaurant)
+  def has_reviewed?(restaurant)
     reviewed_restaurants.include? restaurant
-  end  
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
         user.email = data["email"] if user.email.blank?
-      end  
+      end
     end
   end  
 end
