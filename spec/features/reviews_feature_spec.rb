@@ -44,5 +44,34 @@ feature 'reviewing' do
       click_button 'Leave Review'
       expect(page).not_to have_content('no, this is bad')
     end
+
+    scenario 'user can delete his review' do 
+      visit '/restaurants'
+      click_link 'Review KFC'
+      fill_in "Thoughts", with: "so so"
+      select '3', from: 'Rating'
+      click_button 'Leave Review'
+
+      click_link 'Delete Review'
+      expect(page).not_to have_content('so so')
+    end
+
+    scenario 'user cannot delete someones review' do 
+      visit '/restaurants'
+      click_link 'Review KFC'
+      fill_in "Thoughts", with: "so so"
+      select '3', from: 'Rating'
+      click_button 'Leave Review'  
+
+      click_link 'Sign out'
+      click_link('Sign up')
+      fill_in('Email', with: 'test2@example.com')
+      fill_in('Password', with: 'testtest2')
+      fill_in('Password confirmation', with: 'testtest2')
+      click_button('Sign up')
+
+      expect(page).not_to have_link('Delete Review')
+    end
+
   end
 end
