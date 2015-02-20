@@ -20,7 +20,7 @@
           - restaurant.reviews.each do |review|
             %li
               = review.thoughts
-              = link_to "Endorse Review", new_review_endorsement_path(review)
+              = link_to "Endorse Review", review_endorsements_path(review), method: :post
               %p= pluralize review.endorsements.count, 'endorsements'
               %strong= review.rating
               /5
