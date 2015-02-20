@@ -12,6 +12,7 @@
     %h3
       Reviews for
       = restaurant.name
+      = image_tag restaurant.image.url(:thumb)
       %h3 Average rating: #{restaurant.average_rating.to_i}
       = star_rating(restaurant.average_rating)
 
