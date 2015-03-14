@@ -1,5 +1,0 @@
-##MakersAcademy rails tutorial
-
-The task was to make "yelp" like application using rails.
-Deploy it to heroku and use amazon services to store pictures.
-
